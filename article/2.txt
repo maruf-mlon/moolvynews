@@ -1,0 +1,6 @@
+Заголовок: Long March 10B
+Изображение: chine.jpg
+---
+China has successfully recovered an orbital rocket booster for the first time.
+
+The first stage of the Long March 10B performed a controlled descent and was captured on a sea-based recovery platform, marking a significant step forward in the country's reusable rocket program.

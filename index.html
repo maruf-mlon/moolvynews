@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MNN — Moolvy News Network</title>
+<meta name="description" content="MNN — Официальный сайт Moolvy News Network. Последние новости.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue: #005CFD;
+    --blue-dark: #0044BD;
+    --ink: #0B1220;
+    --body: #4B5563;
+    --line: #E5E7EB;
+    --wash: #F6F8FC;
+    --white: #FFFFFF;
+    --radius: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand-word{
+    font-family:'Manrope', 'Inter', sans-serif;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  /* Header */
+  header.site-header{
+    background:var(--blue);
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 1px 0 rgba(0,0,0,0.06);
+  }
+  .header-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 24px;
+  }
+  .logo-mark{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    flex-shrink:0;
+    background:rgba(255,255,255,0.08);
+  }
+  .brand-word{
+    color:var(--white);
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:0.5px;
+  }
+  .brand-sub{
+    color:rgba(255,255,255,0.85);
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .header-time{
+    margin-left:auto;
+    color:rgba(255,255,255,0.85);
+    font-size:13px;
+    font-weight:500;
+    display:none;
+  }
+  @media(min-width:640px){ .header-time{ display:block; } }
+
+  /* Orbit divider (signature motif, echoes the logo mark)*/
+  .orbit-divider{
+    display:block;
+    width:100%;
+    height:22px;
+  }
+
+  /* Masthead / banner */
+  .masthead{
+    max-width:1180px;
+    margin:0 auto;
+    padding:34px 24px 10px;
+    text-align:center;
+  }
+  .masthead-eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin:0 0 8px;
+  }
+  .masthead h1{
+    font-size:clamp(22px, 3.4vw, 32px);
+    margin:0 0 22px;
+    font-weight:800;
+    color:var(--ink);
+  }
+  .banner-frame{
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--wash);
+  }
+  .banner-frame img{
+    width:100%;
+    height:auto;
+    object-fit:cover;
+  }
+
+  /* -Feed section */
+  main{
+    max-width:1180px;
+    margin:0 auto;
+    padding:46px 24px 90px;
+  }
+  .feed-heading{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:12px;
+    margin-bottom:28px;
+  }
+  .feed-heading h2{
+    font-size:22px;
+    font-weight:800;
+    margin:0;
+  }
+  .feed-status{
+    font-size:12px;
+    color:var(--body);
+    font-weight:500;
+  }
+
+  /* Featured (latest) article */
+  .featured{
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap:32px;
+    align-items:center;
+    padding-bottom:36px;
+    margin-bottom:36px;
+    border-bottom:1px solid var(--line);
+  }
+  @media(max-width:760px){ .featured{ grid-template-columns:1fr; } }
+  .featured .thumb{
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--wash);
+    border:1px solid var(--line);
+    aspect-ratio:16/10;
+  }
+  .featured .thumb img{ width:100%; height:100%; object-fit:cover; }
+  .tag-pill{
+    display:inline-block;
+    background:var(--blue);
+    color:#fff;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:100px;
+    margin-bottom:12px;
+  }
+  .featured h3{
+    font-size:clamp(20px,2.6vw,28px);
+    line-height:1.25;
+    margin:0 0 12px;
+    font-weight:800;
+  }
+  .featured p.excerpt{
+    color:var(--body);
+    font-size:15px;
+    line-height:1.6;
+    margin:0 0 16px;
+  }
+  .meta-row{
+    font-size:13px;
+    color:#8A93A3;
+    font-weight:500;
+    margin-bottom:16px;
+  }
+  .read-link{
+    color:var(--blue);
+    font-weight:700;
+    font-size:14px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .read-link:hover{ color:var(--blue-dark); }
+
+  /* Grid of remaining articles */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:26px;
+  }
+  @media(max-width:900px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:600px){ .grid{ grid-template-columns:1fr; } }
+
+  .card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--white);
+    transition:box-shadow .18s ease, transform .18s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:hover{
+    box-shadow:0 10px 24px rgba(11,18,32,0.08);
+    transform:translateY(-2px);
+  }
+  .card .thumb{
+    aspect-ratio:16/10;
+    background:var(--wash);
+    overflow:hidden;
+  }
+  .card .thumb img{ width:100%; height:100%; object-fit:cover; }
+  .card-body{
+    padding:16px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+  }
+  .card h4{
+    font-size:16px;
+    line-height:1.35;
+    margin:0 0 8px;
+    font-weight:700;
+  }
+  .card .excerpt{
+    color:var(--body);
+    font-size:13.5px;
+    line-height:1.55;
+    margin:0 0 14px;
+    flex:1;
+  }
+  .card .meta-row{ margin-bottom:10px; font-size:12px; }
+  .card .read-link{ font-size:13px; margin-top:auto; }
+
+  /* Empty state */
+  .empty-state{
+    text-align:center;
+    padding:70px 20px;
+    color:var(--body);
+    border:1px dashed var(--line);
+    border-radius:var(--radius);
+    background:var(--wash);
+  }
+  .empty-state .orbit-mini{ width:64px; height:64px; margin:0 auto 18px; opacity:0.5; }
+  .empty-state h3{ font-size:18px; margin:0 0 6px; color:var(--ink); }
+  .empty-state p{ margin:0; font-size:14px; }
+
+  /*  Article detail overlay */
+  .article-view{
+    position:fixed;
+    inset:0;
+    background:var(--white);
+    z-index:100;
+    overflow-y:auto;
+    display:none;
+  }
+  .article-view.open{ display:block; }
+  .article-view-inner{
+    max-width:760px;
+    margin:0 auto;
+    padding:40px 24px 100px;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-weight:700;
+    font-size:14px;
+    color:var(--blue);
+    margin-bottom:26px;
+    cursor:pointer;
+    background:none;
+    border:none;
+    padding:0;
+    font-family:inherit;
+  }
+  .back-link:hover{ color:var(--blue-dark); }
+  .article-view h1{
+    font-size:clamp(24px,4vw,36px);
+    line-height:1.2;
+    margin:0 0 14px;
+    font-weight:800;
+  }
+  .article-view .meta-row{ margin-bottom:22px; }
+  .article-view .article-image{
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+    margin-bottom:26px;
+  }
+  .article-view .article-body p{
+    font-size:16.5px;
+    line-height:1.75;
+    color:#1F2937;
+    margin:0 0 20px;
+  }
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 24px;
+    text-align:center;
+    color:#8A93A3;
+    font-size:13px;
+  }
+
+  :focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <img class="logo-mark" src="assets/mnn.png" alt="" onerror="this.style.display='none'">
+    <div>
+      <div class="brand-word">MNN</div>
+      <div class="brand-sub">Moolvy News Network</div>
+    </div>
+    <div class="header-time" id="clock"></div>
+  </div>
+</header>
+
+<svg class="orbit-divider" viewBox="0 0 1180 22" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,4 C 300,22 880,-14 1180,10" fill="none" stroke="#005CFD" stroke-width="1.4" opacity="0.35"/>
+</svg>
+
+<section class="masthead">
+  <p class="masthead-eyebrow">Официальный сайт</p>
+  <h1>Moolvy News Network</h1>
+  <div class="banner-frame">
+    <img src="assets/bannerm.png" alt="MNN — баннер" onerror="this.parentElement.style.display='none'">
+  </div>
+</section>
+
+<main>
+  <div class="feed-heading">
+    <h2>Последние новости</h2>
+    <span class="feed-status" id="feed-status"></span>
+  </div>
+  <div id="feed-root">
+    <div class="empty-state">
+      <p>Загрузка новостей…</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> Moolvy News Network. Все права защищены.
+</footer>
+
+<div class="article-view" id="article-view">
+  <div class="article-view-inner" id="article-view-inner"></div>
+</div>
+
+<script>
+
+const MAX_CHECK = 300;      // до какого номера пробовать искать файлы
+const STOP_AFTER_MISSES = 4; // остановиться после стольки подряд "не найдено"
+
+function escapeHtml(str){
+  if(str === null || str === undefined) return '';
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+function parseArticle(raw, id){
+  const lines = raw.replace(/\r\n/g,'\n').split('\n');
+  let title = null, date = null, image = null;
+  let bodyStartIndex = 0;
+  let sawSeparator = false;
+
+  for(let i=0;i<lines.length;i++){
+    const line = lines[i].trim();
+    if(line === '---'){
+      sawSeparator = true;
+      bodyStartIndex = i+1;
+      break;
+    }
+    const m = line.match(/^(Заголовок|Title)\s*:\s*(.+)$/i);
+    const d = line.match(/^(Дата|Date)\s*:\s*(.+)$/i);
+    const im = line.match(/^(Изображение|Image|Картинка)\s*:\s*(.+)$/i);
+    if(m) title = m[2].trim();
+    else if(d) date = d[2].trim();
+    else if(im) image = im[2].trim();
+    else if(line !== ''){
+      // Not a recognized "key: value" header line and no separator seen yet —
+      // treat this as the start of a simple (no metadata block) article.
+      break;
+    }
+  }
+
+  if(!sawSeparator){
+    // Simple format fallback: first non-empty line is the title,
+    // everything after is the body.
+    const nonEmpty = lines.findIndex(l => l.trim() !== '');
+    title = title || (nonEmpty >= 0 ? lines[nonEmpty].trim() : `Статья ${id}`);
+    bodyStartIndex = nonEmpty >= 0 ? nonEmpty + 1 : 0;
+  }
+
+  const bodyRaw = lines.slice(bodyStartIndex).join('\n').trim();
+  const paragraphs = bodyRaw.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+  const excerptSource = paragraphs[0] || '';
+  const excerpt = excerptSource.length > 160 ? excerptSource.slice(0,157).trim() + '…' : excerptSource;
+
+  return {
+    id,
+    title: title || `Статья ${id}`,
+    date: date || '',
+    image: image || null,
+    excerpt: excerpt || '',
+    paragraphs: paragraphs.length ? paragraphs : ['Текст статьи скоро появится.']
+  };
+}
+
+async function fetchArticle(id){
+  try{
+    const res = await fetch(`article/${id}.txt`, {cache:'no-store'});
+    if(!res.ok) return null;
+    const text = await res.text();
+    if(!text.trim()) return null;
+    return parseArticle(text, id);
+  }catch(e){
+    return null;
+  }
+}
+
+async function loadAllArticles(){
+  const found = [];
+  let misses = 0;
+  for(let i=1; i<=MAX_CHECK; i++){
+    const art = await fetchArticle(i);
+    if(art){
+      found.push(art);
+      misses = 0;
+    }else{
+      misses++;
+      if(misses >= STOP_AFTER_MISSES) break;
+    }
+  }
+  // newest first
+  return found.reverse();
+}
+
+function cardImageHtml(article, extraClass){
+  if(!article.image) return '';
+  const src = `assets/${article.image}`;
+  return `<div class="thumb ${extraClass||''}">
+    <img src="${src}" alt="" onerror="this.closest('.thumb').style.display='none'">
+  </div>`;
+}
+
+function renderFeed(articles){
+  const root = document.getElementById('feed-root');
+  const status = document.getElementById('feed-status');
+
+  if(!articles.length){
+    status.textContent = '';
+    root.innerHTML = `
+      <div class="empty-state">
+        <svg class="orbit-mini" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#005CFD" stroke-width="2"/>
+          <path d="M8,35 C 40,60 70,20 92,45" fill="none" stroke="#005CFD" stroke-width="2"/>
+        </svg>
+        <h3>Пока нет новостей</h3>
+        <p>Как только в папке article/ появятся статьи, они автоматически будут показаны здесь.</p>
+      </div>`;
+    return;
+  }
+
+  status.textContent = `${articles.length} ${articles.length === 1 ? 'новость' : 'новостей'}`;
+
+  const [featured, ...rest] = articles;
+
+  const featuredHtml = `
+    <div class="featured">
+      ${cardImageHtml(featured, 'thumb-featured')}
+      <div>
+        <span class="tag-pill">Главное</span>
+        <h3>${escapeHtml(featured.title)}</h3>
+        <p class="excerpt">${escapeHtml(featured.excerpt || featured.paragraphs[0])}</p>
+        <div class="meta-row">${escapeHtml(featured.date)}</div>
+        <a class="read-link" href="#article-${featured.id}" data-id="${featured.id}">Читать статью →</a>
+      </div>
+    </div>`;
+
+  const gridHtml = rest.length ? `<div class="grid">
+    ${rest.map(a => `
+      <article class="card">
+        ${cardImageHtml(a)}
+        <div class="card-body">
+          <h4>${escapeHtml(a.title)}</h4>
+          <p class="excerpt">${escapeHtml(a.excerpt)}</p>
+          <div class="meta-row">${escapeHtml(a.date)}</div>
+          <a class="read-link" href="#article-${a.id}" data-id="${a.id}">Читать далее →</a>
+        </div>
+      </article>
+    `).join('')}
+  </div>` : '';
+
+  root.innerHTML = featuredHtml + gridHtml;
+}
+
+function renderArticleView(article){
+  const inner = document.getElementById('article-view-inner');
+  const imageHtml = article.image ? `
+    <div class="article-image">
+      <img src="assets/${article.image}" alt="" onerror="this.closest('.article-image').style.display='none'">
+    </div>` : '';
+
+  inner.innerHTML = `
+    <button class="back-link" id="back-btn">← Ко всем новостям</button>
+    <h1>${escapeHtml(article.title)}</h1>
+    <div class="meta-row">${escapeHtml(article.date)}</div>
+    ${imageHtml}
+    <div class="article-body">
+      ${article.paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('')}
+    </div>
+  `;
+  document.getElementById('back-btn').addEventListener('click', closeArticleView);
+}
+
+function openArticleView(article){
+  renderArticleView(article);
+  document.getElementById('article-view').classList.add('open');
+  window.scrollTo({top:0});
+}
+
+function closeArticleView(){
+  document.getElementById('article-view').classList.remove('open');
+  history.pushState('', document.title, window.location.pathname + window.location.search);
+}
+
+let ARTICLES = [];
+
+function handleHash(){
+  const match = window.location.hash.match(/^#article-(\d+)$/);
+  if(match){
+    const id = parseInt(match[1], 10);
+    const article = ARTICLES.find(a => a.id === id);
+    if(article){ openArticleView(article); return; }
+  }
+  closeArticleViewSilently();
+}
+function closeArticleViewSilently(){
+  document.getElementById('article-view').classList.remove('open');
+}
+
+document.getElementById('feed-root').addEventListener('click', (e) => {
+  const link = e.target.closest('a[data-id]');
+  if(!link) return;
+  e.preventDefault();
+  const id = parseInt(link.dataset.id, 10);
+  const article = ARTICLES.find(a => a.id === id);
+  if(article){
+    history.pushState('', document.title, `#article-${id}`);
+    openArticleView(article);
+  }
+});
+
+window.addEventListener('hashchange', handleHash);
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function tickClock(){
+  const el = document.getElementById('clock');
+  if(!el) return;
+  const now = new Date();
+  el.textContent = now.toLocaleString('ru-RU', {
+    day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'
+  });
+}
+tickClock();
+setInterval(tickClock, 30000);
+
+(async function init(){
+  ARTICLES = await loadAllArticles();
+  renderFeed(ARTICLES);
+  handleHash();
+})();
+</script>
+
+</body>
+</html>

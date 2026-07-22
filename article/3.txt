@@ -1,0 +1,4 @@
+Заголовок: Telegram
+Изображение: durov.jpg
+---
+Pavel Durov confirmed that Telegram will not disclose or scan users' private messages, remaining committed to the principles of privacy and the protection of personal communications.

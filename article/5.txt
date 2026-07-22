@@ -1,0 +1,4 @@
+Заголовок: Instagram AI
+Изображение: instagram.jpg
+---
+Instagram removes AI image-generation feature that used content from public accounts after user backlash.

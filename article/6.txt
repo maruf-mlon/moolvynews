@@ -1,0 +1,4 @@
+Заголовок: Apple is suing OpenAI
+Изображение: gpt.jpg
+---
+Apple is suing OpenAI in a massive new lawsuit, accusing the ChatGPT creator of stealing trade secrets to build its own AI hardware.

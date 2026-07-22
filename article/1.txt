@@ -1,0 +1,5 @@
+Заголовок: Chat Control
+Изображение: eu.jpg
+---
+
+EU extends Chat Control, letting platforms voluntarily scan citizens' messages, emails, images and files until April 2028. WhatsApp and Signal are exempt. Critics like Patrick Breyer call it warrantless mass surveillance via a procedural loophole.

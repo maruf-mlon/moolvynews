@@ -1,0 +1,4 @@
+Заголовок: SpaceX
+Изображение: spx2.jpg
+---
+SpaceX has officially announced that Starship’s 13th integrated flight test is targeted for launch this Thursday, July 16.
